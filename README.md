@@ -1,5 +1,7 @@
-# aws-secure-baseline
-Secure deployment pipeline of an application in the cloud
+# AWS-SECURE-BASELINE
+
+Secure deployment pipeline in the cloud (AWS) for a Python Application.
+
 
 ## API skeleton
 
