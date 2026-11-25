@@ -30,3 +30,36 @@ Configuration is read from the environment: `DJANGO_SECRET_KEY`, `DJANGO_DEBUG`,
 ```bash
 .venv/bin/python manage.py test
 ```
+
+---
+
+## Dockerized version
+
+Instead of installing/running locally we can run in dev or a (fake) prod using Dockerfile and docker compose
+
+The commands to run only dev, only prod or both are shown below (choose one):
+
+```bash
+
+docker compose --build -d
+
+docker compose -f compose.prod.yaml --env-file .env.prod up --build -d
+
+docker compose -f compose.yaml -f compose.prod.yaml --env-file .env.prod up --build -d
+```
+
+
+You can inspect the running container:
+
+```bash
+docker compose -f compose.yaml -f compose.prod.yaml ps
+```
+
+
+And view logs:
+
+```bash
+docker compose -f compose.yaml -f compose.prod.yaml logs -f web
+```
+
+---
