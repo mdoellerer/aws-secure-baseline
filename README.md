@@ -37,7 +37,7 @@ Configuration is read from the environment: `DJANGO_SECRET_KEY`, `DJANGO_DEBUG`,
 
 Instead of installing/running locally we can run in dev or a (fake) prod using Dockerfile and docker compose
 
-The commands to run only dev, only prod or both are shown below (choose one):
+ 1- The commands to run only dev, only prod or both are shown below (choose one):
 
 ```bash
 
@@ -48,19 +48,18 @@ docker compose -f compose.prod.yaml --env-file .env.prod up --build -d
 docker compose -f compose.yaml -f compose.prod.yaml --env-file .env.prod up --build -d
 ```
 
-Run the migrations
+ 2- Run the migrations and Collect static files*
 
 ```bash
 docker compose exec web python manage.py migrate
-```
 
-Collect static files
-
-```bash
 docker compose exec web python manage.py collectstatic --noinput
 ```
 
-You can inspect the running container:
+*We need to restart the container if it was the first run after volume creation
+
+
+ 3- Once it is running, you can inspect the running container:
 
 ```bash
 docker compose -f compose.yaml -f compose.prod.yaml ps
