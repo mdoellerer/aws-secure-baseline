@@ -1,0 +1,19 @@
+services:
+  web:
+    build:
+      context: .
+    container_name: my-django-api-prod
+    command: gunicorn config.wsgi:application --bind 0.0.0.0:8000 --workers 1
+    ports:
+      - "8000:8000"
+    environment:
+      HOME: /app
+      DJANGO_DEBUG: "false"
+      DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY:?Production secret required}
+      DJANGO_ALLOWED_HOSTS: ${DJANGO_ALLOWED_HOSTS:?Production hosts required}
+      SQLITE_PATH: /data/db.sqlite3
+    volumes:
+      - app_data:/data
+    restart: unless-stopped
+volumes:
+  app_data:
