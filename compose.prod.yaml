@@ -7,6 +7,7 @@ services:
     ports:
       - "8000:8000"
     environment:
+      HOME: /app
       DJANGO_DEBUG: "false"
       DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY:?Production secret required}
       DJANGO_ALLOWED_HOSTS: ${DJANGO_ALLOWED_HOSTS:?Production hosts required}

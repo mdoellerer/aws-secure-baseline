@@ -48,6 +48,17 @@ docker compose -f compose.prod.yaml --env-file .env.prod up --build -d
 docker compose -f compose.yaml -f compose.prod.yaml --env-file .env.prod up --build -d
 ```
 
+Run the migrations
+
+```bash
+docker compose exec web python manage.py migrate
+```
+
+Collect static files
+
+```bash
+docker compose exec web python manage.py collectstatic --noinput
+```
 
 You can inspect the running container:
 
